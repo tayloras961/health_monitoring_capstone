@@ -1,6 +1,5 @@
 # User Guide — Proactive Health Monitoring System
 
-## Cover / Title / Copyright
 **Proactive Health Monitoring System**  
 
 This guide explains how to install and use the application to upload health data, view trends, detect potential anomalies, and generate weekly summaries. The system is intended for demonstration purposes and is not a medical device.
