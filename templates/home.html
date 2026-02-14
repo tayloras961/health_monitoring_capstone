@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h1>Proactive Health Monitoring System</h1>
+  <p class="small">
+    This app ingests time-series health data (wearables/EHR-like), cleans it,
+    detects unusual patterns (anomalies), and presents trends plus weekly summaries.
+  </p>
+  {% if not session.get("user_id") %}
+    <a class="btn" href="{{ url_for('login') }}">Login to start</a>
+  {% else %}
+    <a class="btn" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+  {% endif %}
+  <p class="small" style="margin-top:10px">
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Dashboard</h2>
+  <div class="alert">
+    <b>Anomaly summary:</b>
+    Total records: {{ summary.total_records }} |
+    Flagged anomalies: {{ summary.anomaly_count }} |
+    Anomaly rate: {{ summary.anomaly_rate }}%
+  </div>
+  <p class="small" style="margin-top:8px;">
+    Anomalies are a screening signal based on your recent baseline and may include sensor noise.
+  </p>
+</div>
+
+{% if not figures %}
+  <div class="card">
+    <p>No data found. Upload or load sample data first.</p>
+    <a class="btn" href="{{ url_for('data_page') }}">Go to Data</a>
+  </div>
+{% else %}
+  {% for fig in figures %}
+    <div class="card">
+      <h3>{{ fig.title }}</h3>
+      <div id="{{ fig.div_id }}"></div>
+      <script>
+        Plotly.newPlot("{{ fig.div_id }}", {{ fig.data|tojson }}, {{ fig.layout|tojson }}, {displayModeBar: false});
+      </script>
+      <p class="small">Dots marked as anomalies indicate unusual values compared to your recent data distribution.</p>
+    </div>
+  {% endfor %}
+{% endif %}
+{% endblock %}

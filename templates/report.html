@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Weekly Report</h2>
+  <p class="small">Summary based on the last 7 days of available data (or the most recent week).</p>
+
+  {% if not report %}
+    <p>No data found. Upload or load sample data first.</p>
+    <a class="btn" href="{{ url_for('data_page') }}">Go to Data</a>
+  {% else %}
+    <div class="row">
+      <div class="card">
+        <h3>Key metrics</h3>
+        <ul>
+          <li><b>Date range:</b> {{ report.date_range }}</li>
+          <li><b>Records analyzed:</b> {{ report.records }}</li>
+          <li><b>Anomalies flagged:</b> {{ report.anomalies }}</li>
+          <li><b>Top anomaly drivers:</b> {{ report.top_drivers }}</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Interpretation</h3>
+        <p class="small">{{ report.interpretation }}</p>
+        <a class="btn" href="{{ url_for('download_report') }}">Download Report CSV</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Daily rollup</h3>
+      <div style="overflow:auto;">
+        {{ report.table_html|safe }}
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

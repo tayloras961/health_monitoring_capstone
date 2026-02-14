@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Login</h2>
+  <p class="small">Use the default accounts if needed: <span class="badge">admin/admin123</span> <span class="badge">user/user123</span></p>
+  <form method="post">
+    <label>Username</label>
+    <input name="username" required>
+    <br><br>
+    <label>Password</label>
+    <input name="password" type="password" required>
+    <br><br>
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+</div>
+{% endblock %}

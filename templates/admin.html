@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Admin</h2>
+  <p class="small">Administrative utilities (role: admin only).</p>
+
+  <div class="row">
+    <div class="card">
+      <h3>System users</h3>
+      <div style="overflow:auto;">
+        {{ users_table|safe }}
+      </div>
+    </div>
+    <div class="card">
+      <h3>Database</h3>
+      <p class="small">Total health records across all users: <b>{{ total_records }}</b></p>
+      <a class="btn danger" href="{{ url_for('admin_reset_db') }}">Reset DB</a>
+      <p class="small" style="margin-top:10px;">Reset deletes all users (recreates defaults) and all health records.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
